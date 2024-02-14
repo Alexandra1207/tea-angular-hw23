@@ -1,0 +1,17 @@
+<section class="container mx-auto">
+  <h2 class="h2 text-center">Описание товара</h2>
+  <div class="d-flex flex-column align-items-center text-center">
+    <img src="{{product.image}}" class="card-img-top w-25" alt="фото чая">
+    <div class="card-body">
+      <h5 class="card-title mb-2">{{product.title}}</h5>
+      <p class="card-text w-75 mx-auto">{{product.description}}</p>
+        <div class="fw-bold mb-3">
+          {{product.price}} руб.
+        </div>
+        <a href="#" class="btn btn-primary w-25 mb-4" routerLink="/order" [queryParams]="{product: product.title}">Купить</a>
+      </div>
+  </div>
+</section>
+
+
+

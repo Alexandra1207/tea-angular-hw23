@@ -1,0 +1,15 @@
+<div class="col">
+  <div class="card">
+    <img src="{{product.image}}" class="card-img-top" alt="фото чая">
+    <div class="card-body">
+      <h5 class="card-title">{{product.title}}</h5>
+      <p class="card-text">{{product.description | cutText}}</p>
+      <div class="d-flex justify-content-between align-items-center">
+        <div class="fw-bold">
+          {{product.price}} руб.
+        </div>
+        <a href="#" class="btn btn-primary" [routerLink]="['/products', product.id]">Подробнее</a>
+      </div>
+    </div>
+  </div>
+</div>
