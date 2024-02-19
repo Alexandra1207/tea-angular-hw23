@@ -15,6 +15,7 @@ import { CutTextPipe } from './pipes/cut-text.pipe';
 import {CommonModule} from "@angular/common";
 import { SearchProductsPipe } from './pipes/search-products.pipe';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
     ProductsComponent,
     ProductComponent,
     CutTextPipe,
-    SearchProductsPipe
+    SearchProductsPipe,
   ],
   imports: [
     BrowserModule,
@@ -36,6 +37,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
     ReactiveFormsModule,
     HttpClientModule,
     CommonModule,
+    NgbModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

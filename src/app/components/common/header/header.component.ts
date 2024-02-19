@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {SearchService} from "../../../services/search.service";
 import {Router} from "@angular/router";
+import {Subject} from "rxjs";
+import {FormControl} from "@angular/forms";
 
 @Component({
   selector: 'header-component',
@@ -8,17 +10,44 @@ import {Router} from "@angular/router";
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-  inputValue: string = '';
+  inputValue = new FormControl('');
+  // inputValue: string = ''; //FormControl
+  public search$: Subject<string> = new Subject<string>();
+
   constructor(private router: Router) {
   }
+
   ngOnInit(): void {
   }
 
   onSubmit() {
-    if (this.inputValue.trim() === '') {
-      this.router.navigate(['/products']);
-    } else {
-      this.router.navigate(['/products'], { queryParams: { title: this.inputValue }});
+    if (this.inputValue.value !== null) {
+      this.search$.next(this.inputValue.value);
+      if (this.inputValue.value.trim() === '') {
+        this.router.navigate(['/products']);
+      } else {
+        this.router.navigate(['/products'], {queryParams: {title: this.inputValue.value}});
+        // this.router.navigate(['/products'], { queryParams: { title: this.inputValue.value}});
+      }
     }
+  }
+
+  reset() {
+    if (this.inputValue.value !== null) {
+      this.search$.next(this.inputValue.value);
+      this.inputValue.reset();
+    }
+    this.router.navigate(['/products']);
+  }
+
+  clearSearchParams() {
+    this.router.navigate([], {
+      queryParams: { title: null },
+      queryParamsHandling: 'merge'
+    });
+  }
+
+  handleClearSearchParam() {
+    this.clearSearchParams();
   }
 }

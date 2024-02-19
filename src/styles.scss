@@ -17,4 +17,37 @@ app-product {
   background-position: center;
 }
 
+.arrow {
+  transition: all 0.3s;
+}
 
+.ui-accordion-header-active.ui-state-active.accordion-title .arrow {
+  transform: rotate(-180deg);
+}
+
+//.accordion-title::after {
+//  position: absolute;
+//  display: block;
+//  width: 20px;
+//  height: 16px;
+//  right: 27px;
+//  top: 50%;
+//  transform: translateY(-50%);
+//  content: "";
+//  background-image: url("./assets/images/arrow-down.svg");
+//  background-repeat: no-repeat;
+//  background-size: var(--bs-accordion-btn-icon-width);
+//  transition: all .3s;
+//}
+
+//.ui-accordion-header-active.ui-state-active.accordion-title::after {
+//  transform: translateY(-50%) rotate(-180deg);
+//}
+
+
+
+/* Importing Bootstrap SCSS file. */
+@import '~bootstrap/scss/bootstrap';
+
+/* Importing Bootstrap SCSS file. */
+@import '~bootstrap/scss/bootstrap';

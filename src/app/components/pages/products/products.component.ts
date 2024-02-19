@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ProductType} from "../../../types/product.type";
 import {ProductService} from "../../../services/product.service";
 import {Router} from "@angular/router";
-import {delay} from "rxjs";
+import {delay, Subscription} from "rxjs";
 
 @Component({
   selector: 'app-products',
@@ -11,7 +11,9 @@ import {delay} from "rxjs";
 })
 export class ProductsComponent implements OnInit {
   public products: ProductType[] = [];
-  loading: boolean = false;
+  private subscriptionProducts: Subscription | null = null;
+  private subscriptionQueryParams: Subscription | null = null;
+  // loading: boolean = false;
   // searchValue: string = '';
 
   constructor(private productService: ProductService, private router: Router) {
@@ -19,22 +21,36 @@ export class ProductsComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.loading = true;
-    this.productService.getProducts()
-      .pipe(
-        delay(1000) // чтобы показать лоадер
-      )
+    // this.loading = true;
+    this.subscriptionProducts = this.productService.getProducts()
+      // .pipe(
+      //   delay(1000) // чтобы показать лоадер
+      // )
       .subscribe(
         {
-          next: (data) => {
-            this.products = data;
-            this.loading = false;
+          // next: (data: ProductType[]) => {
+          next: (data: ProductType[] | Record<string, ProductType>) => {
+            if (Array.isArray(data)) {
+              this.products = data;
+            }
+            // else {
+            //
+            // }
+            // this.loading = false;
           },
           error: (error) => {
             console.log(error);
             this.router.navigate(['/'])
           }
         })
+  }
+
+  viewProducts() {
+
+  }
+
+  ngOnDestroy() {
+    this.subscriptionProducts?.unsubscribe();
   }
 }
 

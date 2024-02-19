@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {FormBuilder, FormControl, Validators} from "@angular/forms";
 import {ProductService} from "../../../services/product.service";
-import {catchError, delay, finalize, of, Subscription} from "rxjs";
+import {catchError, delay, of, Subscription} from "rxjs";
 
 declare var $: any;
 
@@ -21,7 +21,7 @@ export class OrderComponent implements OnInit {
     last_name: ['', [Validators.required, Validators.pattern('^[А-Яа-я\\s]+$')]],
     phone: ['', [Validators.required, Validators.pattern('^(?:(?:\\+?\\d{11})|[^0-9])$')]],
     country: ['', Validators.required],
-    zip: ['', Validators.required],
+    zip: ['', [Validators.required, Validators.pattern('^\\d+$')]],
     address: ['', [Validators.required, Validators.pattern('^[а-яА-Я0-9\\s\\/\\-]+$')]],
     comment: ['']
   })
@@ -43,28 +43,28 @@ export class OrderComponent implements OnInit {
     this.subscriptionOrder?.unsubscribe();
   }
 
-  isSubmitting: boolean = false;
+  // isSubmitting: boolean = false;
 
   public createOrder() {
-    Object.keys(this.checkoutForm.controls).forEach(key => {
-      const control = this.checkoutForm.get(key);
-      if (control instanceof FormControl) {
-        control.markAsTouched();
-        control.markAsDirty();
-      }
-    });
+    // Object.keys(this.checkoutForm.controls).forEach(key => {
+    //   const control = this.checkoutForm.get(key);
+    //   if (control instanceof FormControl) {
+    //     control.markAsTouched();
+    //     control.markAsDirty();
+    //   }
+    // });
+    //
+    // if (this.checkoutForm.invalid) {
+    //   Object.keys(this.checkoutForm.controls).forEach(key => {
+    //     const control = this.checkoutForm.get(key);
+    //     if (control?.invalid) {
+    //       control.setErrors({'incorrect': true});
+    //     }
+    //   });
+    //   return;
+    // }
 
-    if (this.checkoutForm.invalid) {
-      Object.keys(this.checkoutForm.controls).forEach(key => {
-        const control = this.checkoutForm.get(key);
-        if (control?.invalid) {
-          control.setErrors({'incorrect': true});
-        }
-      });
-      return;
-    }
-
-    this.isSubmitting = true;
+    // this.isSubmitting = true;
     this.subscriptionOrder = this.productService.createOrder({
       name: this.checkoutForm.get('name')?.value as string,
       last_name: this.checkoutForm.get('last_name')?.value as string,
@@ -80,7 +80,7 @@ export class OrderComponent implements OnInit {
           console.error(error);
           return of({success: false, message: 'Что-то пошло не так'});
         }),
-        delay(1000) // свойство добавлено, чтобы было видно работу disabled для кнопки
+        // delay(1000) // свойство добавлено, чтобы было видно работу disabled для кнопки
       )
       .subscribe(response => {
         console.log(response.success);
@@ -96,7 +96,7 @@ export class OrderComponent implements OnInit {
             $('#order').removeClass('d-none');
           }, 3000);
         }
-        this.isSubmitting = false;
+        // this.isSubmitting = false;
       });
   }
 }
