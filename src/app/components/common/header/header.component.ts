@@ -1,8 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {SearchService} from "../../../services/search.service";
 import {Router} from "@angular/router";
 import {Subject} from "rxjs";
 import {FormControl} from "@angular/forms";
+declare var $: any;
+
 
 @Component({
   selector: 'header-component',
@@ -11,7 +12,6 @@ import {FormControl} from "@angular/forms";
 })
 export class HeaderComponent implements OnInit {
   inputValue = new FormControl('');
-  // inputValue: string = ''; //FormControl
   public search$: Subject<string> = new Subject<string>();
 
   constructor(private router: Router) {
@@ -27,7 +27,6 @@ export class HeaderComponent implements OnInit {
         this.router.navigate(['/products']);
       } else {
         this.router.navigate(['/products'], {queryParams: {title: this.inputValue.value}});
-        // this.router.navigate(['/products'], { queryParams: { title: this.inputValue.value}});
       }
     }
   }
@@ -37,6 +36,7 @@ export class HeaderComponent implements OnInit {
       this.search$.next(this.inputValue.value);
       this.inputValue.reset();
     }
+
     this.router.navigate(['/products']);
   }
 

@@ -70,11 +70,6 @@
               Поле может содержать только цифры
             </div>
           </div>
-<!--          <div class="invalid-feedback" *ngIf="checkoutForm.get('zip')?.invalid-->
-<!--              && (checkoutForm.get('zip')?.touched || checkoutForm.get('zip')?.dirty)-->
-<!--              && checkoutForm.get('zip')?.errors?.['required']">-->
-<!--            Введите индекс-->
-<!--          </div>-->
         </div>
 
         <div class="col-12">
@@ -97,7 +92,6 @@
 
       </div>
 
-<!--      <button class="btn btn-primary px-4" type="submit" (click)="createOrder()" [disabled]="isSubmitting">Отправить</button>-->
       <button class="btn btn-primary px-4" type="submit" [disabled]="checkoutForm.invalid || checkoutForm.disabled">Отправить</button>
     </form>
   </div>

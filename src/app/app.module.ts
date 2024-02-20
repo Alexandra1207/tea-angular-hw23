@@ -13,7 +13,6 @@ import { ProductComponent } from './components/pages/product/product.component';
 import {HttpClientModule} from "@angular/common/http";
 import { CutTextPipe } from './pipes/cut-text.pipe';
 import {CommonModule} from "@angular/common";
-import { SearchProductsPipe } from './pipes/search-products.pipe';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
@@ -28,7 +27,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     ProductsComponent,
     ProductComponent,
     CutTextPipe,
-    SearchProductsPipe,
   ],
   imports: [
     BrowserModule,

@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
-import {FormBuilder, FormControl, Validators} from "@angular/forms";
+import {FormBuilder, Validators} from "@angular/forms";
 import {ProductService} from "../../../services/product.service";
-import {catchError, delay, of, Subscription} from "rxjs";
+import {catchError, of, Subscription} from "rxjs";
 
 declare var $: any;
 
@@ -43,28 +43,8 @@ export class OrderComponent implements OnInit {
     this.subscriptionOrder?.unsubscribe();
   }
 
-  // isSubmitting: boolean = false;
-
   public createOrder() {
-    // Object.keys(this.checkoutForm.controls).forEach(key => {
-    //   const control = this.checkoutForm.get(key);
-    //   if (control instanceof FormControl) {
-    //     control.markAsTouched();
-    //     control.markAsDirty();
-    //   }
-    // });
-    //
-    // if (this.checkoutForm.invalid) {
-    //   Object.keys(this.checkoutForm.controls).forEach(key => {
-    //     const control = this.checkoutForm.get(key);
-    //     if (control?.invalid) {
-    //       control.setErrors({'incorrect': true});
-    //     }
-    //   });
-    //   return;
-    // }
 
-    // this.isSubmitting = true;
     this.subscriptionOrder = this.productService.createOrder({
       name: this.checkoutForm.get('name')?.value as string,
       last_name: this.checkoutForm.get('last_name')?.value as string,
@@ -80,7 +60,6 @@ export class OrderComponent implements OnInit {
           console.error(error);
           return of({success: false, message: 'Что-то пошло не так'});
         }),
-        // delay(1000) // свойство добавлено, чтобы было видно работу disabled для кнопки
       )
       .subscribe(response => {
         console.log(response.success);
@@ -96,7 +75,6 @@ export class OrderComponent implements OnInit {
             $('#order').removeClass('d-none');
           }, 3000);
         }
-        // this.isSubmitting = false;
       });
   }
 }

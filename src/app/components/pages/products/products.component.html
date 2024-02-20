@@ -1,10 +1,6 @@
 <section class="container pb-5 mt-5"  id="products">
-  <h2 class="h2 text-center mb-4">Наши чайные коллекции</h2>
+  <h2 class="h2 text-center mb-4" id="product-title">Наши чайные коллекции</h2>
   <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-3 wow animate__backInLeft">
     <product-card *ngFor="let product of products" [product] = "product"></product-card>
   </div>
-<!--  <div *ngIf="loading" class="loader-bg">-->
-<!--  <div class="loader-bg">-->
-<!--    <div class="loader"></div>-->
-<!--  </div>-->
 </section>

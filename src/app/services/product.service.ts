@@ -9,16 +9,8 @@ import {OrderType} from "../types/order.type";
 })
 export class ProductService {
 
-  private products: ProductType[] = [];
-
-
   constructor(private http: HttpClient) {
   }
-
-  // getProducts(): Observable<ProductType[]> {
-  //   return this.http.get<ProductType[]>('https://testologia.site/tea') .pipe(
-  //     tap(response => console.log(response)));
-  // }
 
   getProduct(id: number): Observable<ProductType> | undefined {
     return this.http.get<ProductType>(`https://testologia.site/tea?id=${id}`);
