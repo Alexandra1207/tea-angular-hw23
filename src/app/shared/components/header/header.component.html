@@ -14,7 +14,7 @@
           <a class="nav-link" [routerLink]="'/products'" routerLinkActive="active">Каталог</a>
         </li>
       </ul>
-      <form class="d-flex" role="search" #searchForm="ngForm" (ngSubmit)="onSubmit()">
+      <form class="d-flex" role="search" (ngSubmit)="onSubmit()">
         <input class="form-control me-2 p-2" type="search" placeholder="Поиск чая" aria-label="Search" [formControl]="inputValue" (input)="handleClearSearchParam()">
         <button class="btn btn-outline-primary px-4" type="submit">Найти</button>
       </form>

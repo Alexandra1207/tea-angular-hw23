@@ -25,6 +25,32 @@ app-product {
   transform: rotate(-180deg);
 }
 
+.accordion .accordion-item {
+  border: 0;
+}
+
+.accordion-header .accordion-button,
+.accordion-header .accordion-button:not(.collapsed) {
+  background-color: rgb(13, 110, 253);
+  color: #fff;
+  font-size: 28px;
+  font-weight: 500;
+  border-radius: 6px;
+  margin-bottom: 16px;
+}
+
+.accordion-header .accordion-button:not(.collapsed) {
+  margin-bottom: 0;
+}
+
+.accordion-header .accordion-button:focus {
+  box-shadow: none;
+}
+
+.accordion-header .accordion-button.accordion-button::after {
+  background-image: url("./assets/images/arrow-down.svg");
+}
+
 //.accordion-title::after {
 //  position: absolute;
 //  display: block;
@@ -49,5 +75,3 @@ app-product {
 /* Importing Bootstrap SCSS file. */
 @import '~bootstrap/scss/bootstrap';
 
-/* Importing Bootstrap SCSS file. */
-@import '~bootstrap/scss/bootstrap';
